@@ -1,7 +1,6 @@
 import { PageProps, PaginationProps, Product } from '@/types';
 import { Head } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import ProductItem from '@/Components/ProductItem';
 import ProductCarousel from '@/Components/ProductCarousel';
 
 export default function Home({
