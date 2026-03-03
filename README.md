@@ -1,59 +1,156 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel & React Multi-Vendor E-Commerce Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a modern, full-stack, multi-vendor e-commerce application built with some of the latest technologies in the web development ecosystem. The frontend is powered by **React** and **Inertia.js**, served by a robust **Laravel 12** backend. The entire administrative experience is managed through a beautiful and powerful **Filament 5** admin panel.
 
-## About Laravel
+The platform is designed to allow multiple vendors to sign up, manage their own products, and receive payments through **Stripe Connect**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Key Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Customer-Facing (Frontend)
+- **Modern & Fast UI**: Built with React, TypeScript, and styled with Tailwind CSS.
+- **Product Discovery**: Browse products by department and category.
+- **Advanced Search**: Full-text search for products.
+- **Product Variations**: Support for product options like color and size, with unique images for each variation.
+- **Shopping Cart**: Add/update/remove items from the cart.
+- **Mini-Cart**: A quick-view dropdown of the cart contents in the navbar.
+- **Secure Checkout**: Seamless and secure payment processing powered by Stripe.
+- **User Authentication**: Login, registration, and profile management.
+- **Order History**: Users can view their past orders and their status.
+- **Address Management**: Users can save and manage their shipping addresses.
 
-## Learning Laravel
+### Vendor & Admin Features (Backend & Admin Panel)
+- **Powerful Admin Panel**: Built with the elegant Filament 5 toolkit.
+- **Product Management**: Full CRUD (Create, Read, Update, Delete) for products.
+    - **Rich Text Editor**: For detailed product descriptions.
+    - **Image Management**: Multi-image uploads per product using Spatie Media Library.
+- **Order Management**: View and update order statuses.
+- **Multi-Vendor System**:
+    - Vendors can register and manage their own store profile.
+    - Products are associated with vendors.
+    - **Stripe Connect Integration**: Secure onboarding for vendors and automated payouts.
+- **Role-Based Access Control**: Differentiating between regular users, vendors, and admins.
+- **Email Notifications**: Automated emails for events like completed checkouts.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Tech Stack
 
-## Laravel Sponsors
+- **Backend**: Laravel 12
+- **Frontend**: React, TypeScript, Inertia.js
+- **Admin Panel**: Filament 5
+- **Styling**: Tailwind CSS
+- **Database**: MySQL
+- **Payments**: Stripe & Stripe Connect
+- **File Storage**: Spatie Media Library for product images
+- **Authentication**: Laravel Breeze (Inertia/React stack)
+- **Development Environment**: Vite
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## ⚙️ Installation & Setup
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Follow these steps to get the project up and running on your local machine.
 
-## Contributing
+### Prerequisites
+- PHP >= 8.2
+- Composer
+- Node.js & NPM
+- A database server (e.g., MySQL)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 1. Clone the Repository
 
-## Code of Conduct
+```sh
+git clone https://github.com/your-username/laravel-react-ecommerce.git
+cd laravel-react-ecommerce
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 2. Install Dependencies
 
-## Security Vulnerabilities
+```sh
+# Install PHP dependencies
+composer install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Install JavaScript dependencies
+npm install
+```
 
-## License
+### 3. Environment Configuration
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```sh
+# Create your .env file
+cp .env.example .env
+```
+
+Now, open the `.env` file and configure your environment variables. Pay special attention to the following:
+
+```
+APP_NAME="SuperStore"
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_user
+DB_PASSWORD=your_database_password
+
+# Your Stripe API Keys
+STRIPE_KEY=pk_your_stripe_public_key
+STRIPE_SECRET=sk_your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=whsec_...
+
+# Mail configuration for sending emails
+MAIL_MAILER=smtp
+MAIL_HOST=mailpit
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+### 4. Application Setup
+
+```sh
+# Generate a new application key
+php artisan key:generate
+
+# Run database migrations
+php artisan migrate
+
+# Create a symbolic link for the storage directory
+# This is crucial for making uploaded images publicly accessible
+php artisan storage:link
+```
+
+### 5. Running the Development Servers
+This project uses a concurrent script to run the Laravel and Vite servers simultaneously.
+
+```sh
+# This will start the Laravel server (usually on port 8000)
+# and the Vite development server.
+npm run dev
+```
+
+You can now access the application at the `APP_URL` you defined (e.g., `http://localhost:8000`).
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+
+1.  Fork the repository.
+2.  Create your feature branch (`git checkout -b feature/new-amazing-feature`).
+3.  Commit your changes (`git commit -am 'Add some amazing feature'`).
+4.  Push to the branch (`git push origin feature/new-amazing-feature`).
+5.  Create a new Pull Request.
+
+---
+
+## 📄 License
+
+This project is open-source software licensed under the MIT license.
