@@ -8,5 +8,12 @@ export default defineConfig({
         input: 'resources/js/app.tsx',
         ssr: 'resources/js/ssr.tsx',
         refresh: true,
-    }), tailwindcss(), react()]
+    }), tailwindcss(), react()],
+    server: {
+        host: '0.0.0.0',
+        port: 5173,
+        hmr: {
+            host: 'localhost',
+        },
+    },
 });

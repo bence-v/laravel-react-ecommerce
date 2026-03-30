@@ -2,43 +2,58 @@
 
 namespace Database\Seeders;
 
-use App\Enums\RolesEnum;
-use App\Enums\VendorStatusEnum;
+use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Vendor;
-use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
-        User::factory()->create([
-           'name' => 'User User',
-           'email' => 'user@gmail.com',
-
-        ])->assignRole(RolesEnum::User->value);
-
-        $user = User::factory()->create([
-            'name' => 'Vendor User',
-            'email' => 'vendor@gmail.com',
-
-        ]);
-        $user->assignRole(RolesEnum::Vendor->value);
-
-        Vendor::create([
-            'user_id' => $user->id,
-            'status' => VendorStatusEnum::Approved,
-            'store_name' => 'Vendor Store',
-            'store Address' => fake()->address()
-        ]);
-
-        User::factory()->create([
+        // Create Admin User
+        $admin = User::create([
             'name' => 'Admin User',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+        ]);
+        $admin->assignRole('admin');
 
-        ])->assignRole(RolesEnum::Admin->value);
+        // Create Vendor User
+        $vendorUser = User::create([
+            'name' => 'Vendor User',
+            'email' => 'vendor@example.com',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+        ]);
+        $vendorUser->assignRole('vendor');
+        Vendor::create([
+            'user_id' => $vendorUser->id,
+            'store_name' => 'The Vendor Shop',
+            'status' => 'approved',
+        ]);
+
+
+        // Create Regular Users
+        User::create([
+            'name' => 'Test User 1',
+            'email' => 'user1@example.com',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Test User 2',
+            'email' => 'user2@example.com',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+        ]);
     }
 }

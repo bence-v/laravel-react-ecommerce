@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Category;
+use App\Models\Department;
 
 class CategorySeeder extends Seeder
 {
@@ -13,73 +13,72 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = [
-            [
-                'name' => 'Electronics',
-                'department_id' => 1,
-                'parent_id' => null,
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Fashion',
-                'department_id' => 2,
-                'parent_id' => null,
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Computers',
-                'department_id' => 1,
-                'parent_id' => 1,
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Smartphones',
-                'department_id' => 1,
-                'parent_id' => 1,
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Android',
-                'department_id' => 1,
-                'parent_id' => 4,
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Laptops',
-                'department_id' => 1,
-                'parent_id' => 3,
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Desktops',
-                'department_id' => 1,
-                'parent_id' => 3,
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'IPhones',
-                'department_id' => 1,
-                'parent_id' => 4,
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ];
+        // Ensure departments are available
+        $electronicsDep = Department::where('name', 'Electronics')->first();
+        $fashionDep = Department::where('name', 'Fashion')->first();
 
-        DB::table('categories')->insert($categories);
+        if (!$electronicsDep || !$fashionDep) {
+            $this->command->error('Please run the DepartmentSeeder first.');
+            return;
+        }
+
+        // Level 1 Categories
+        $electronicsCat = Category::create([
+            'name' => 'Electronics',
+            'department_id' => $electronicsDep->id,
+            'parent_id' => null,
+            'active' => true,
+        ]);
+
+        $fashionCat = Category::create([
+            'name' => 'Fashion',
+            'department_id' => $fashionDep->id,
+            'parent_id' => null,
+            'active' => true,
+        ]);
+
+        // Level 2 Categories
+        $computersCat = Category::create([
+            'name' => 'Computers',
+            'department_id' => $electronicsDep->id,
+            'parent_id' => $electronicsCat->id,
+            'active' => true,
+        ]);
+
+        $smartphonesCat = Category::create([
+            'name' => 'Smartphones',
+            'department_id' => $electronicsDep->id,
+            'parent_id' => $electronicsCat->id,
+            'active' => true,
+        ]);
+
+        // Level 3 Categories
+        Category::create([
+            'name' => 'Android',
+            'department_id' => $electronicsDep->id,
+            'parent_id' => $smartphonesCat->id,
+            'active' => true,
+        ]);
+
+        Category::create([
+            'name' => 'iPhones',
+            'department_id' => $electronicsDep->id,
+            'parent_id' => $smartphonesCat->id,
+            'active' => true,
+        ]);
+
+        Category::create([
+            'name' => 'Laptops',
+            'department_id' => $electronicsDep->id,
+            'parent_id' => $computersCat->id,
+            'active' => true,
+        ]);
+
+        Category::create([
+            'name' => 'Desktops',
+            'department_id' => $electronicsDep->id,
+            'parent_id' => $computersCat->id,
+            'active' => true,
+        ]);
     }
 }

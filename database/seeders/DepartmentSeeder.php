@@ -2,55 +2,38 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Department;
+use Illuminate\Support\Str;
 
 class DepartmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
         $departments = [
-            [
-                'name' => 'Electronics',
-                'slug' => 'electronics',
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Fashion',
-                'slug' => 'fashion',
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Home, Garden & Tools',
-                'slug' => \Str::slug('Home, Garden & Tools'),
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Books & Audible',
-                'slug' => \Str::slug('Books & Audible'),
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Healthy & Beauty',
-                'slug' => \Str::slug('Healthy & Beauty'),
-                'active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+            ['name' => 'Electronics', 'active' => true],
+            ['name' => 'Fashion', 'active' => true],
+            ['name' => 'Home & Garden', 'active' => true],
+            ['name' => 'Books', 'active' => true],
+            ['name' => 'Sports & Outdoors', 'active' => true],
+            ['name' => 'Toys & Games', 'active' => true],
+            ['name' => 'Health & Beauty', 'active' => true],
+            ['name' => 'Automotive', 'active' => true],
+            ['name' => 'Movies & Music', 'active' => true],
+            ['name' => 'Computers', 'active' => true],
         ];
 
-        DB::table('departments')->insert($departments);
+        foreach ($departments as $department) {
+            Department::create([
+                'name' => $department['name'],
+                'slug' => Str::slug($department['name']),
+                'active' => $department['active'],
+            ]);
+        }
     }
 }
