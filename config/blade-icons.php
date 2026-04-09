@@ -30,12 +30,12 @@ return [
              |
              */
 
-             //'path' => 'vendor\davidhsianturi\blade-bootstrap-icons\resources\svg',
+             'path' => 'vendor\davidhsianturi\blade-bootstrap-icons\resources\svg',
 
              /**
               * For Docker environment change the path
               */
-             'path' => 'vendor/davidhsianturi/blade-bootstrap-icons/resources/svg',
+             //'path' => 'vendor/davidhsianturi/blade-bootstrap-icons/resources/svg',
 
              /*
              |-----------------------------------------------------------------

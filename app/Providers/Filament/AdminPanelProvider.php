@@ -64,7 +64,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->navigationItems([
                 NavigationItem::make('Shop')
-                    ->url('localhost/', shouldOpenInNewTab: true)
+                    ->url('/', shouldOpenInNewTab: true)
                     ->icon('blade-cart'),
             ])
 //            ->authMiddleware([

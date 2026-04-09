@@ -32,16 +32,18 @@ function ProductItem({product}: {product: Product}) {
                             className="rounded-xl h-52 w-full object-fit mb-4"
                         />
                     </a>
-                    <span
+                    {/* Adding Discount badge feature */}
+                    {/*<span
                         className="absolute font-bold top-0.5 right-0.5 grid min-h-[30px] min-w-[30px] translate-x-2/4 -translate-y-2/4 place-items-center rounded-lg  bg-red-600 py-1 px-1 text-xs text-white border border-white">
-                                -15%
-                            </span>
+                       -15%
+                   </span>*/}
                 </div>
 
                 <div>
                     <div className="space-x-3 mb-4">
-                                <span
-                                    className="bg-brand-softer border border-brand-subtle text-fg-brand-strong text-xs font-medium px-1.5 py-0.5 rounded-sm">4.8 out of 5</span>
+                        <span className="bg-brand-softer border border-brand-subtle text-fg-brand-strong text-xs font-medium px-1.5 py-0.5 rounded-sm">
+                            4.8 out of 5
+                        </span>
                     </div>
                     <Link className={'hover:underline'} href={route('product.show', product.slug)}>
                         <h6 className="text-l text-heading font-semibold tracking-tight">{product.title}</h6>

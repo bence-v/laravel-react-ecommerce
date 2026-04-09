@@ -45,8 +45,8 @@ function VendorDetails(
             onSuccess: () => {
                 closeModal()
             },
-            onError: (errors) => {
-
+            onError: (error) => {
+                console.log(error);
             },
         });
     };
@@ -76,7 +76,7 @@ function VendorDetails(
 
             {user.vendor && (
                 <>
-                    <form onSubmit={updateVendor}>
+                    <form onSubmit={updateVendor} className="gird grid-cols-1">
                        <div className="mb-4">
                            <InputLabel htmlFor="name" value="Store Name" />
                            <TextInput
@@ -90,18 +90,18 @@ function VendorDetails(
                            />
                        </div>
                         <div className="mb-4">
-                            <InputLabel htmlFor="name" value="Store Index" />
-
+                            <InputLabel htmlFor="store_address" value="Store Address" />
                             <textarea
                                 className="w-full rounded-md p-1 border-gray-300 shadow-sm"
                                 value={data.store_address}
+                                name="store_address"
                                 onChange={(e) => setData('store_address', e.target.value)}
                                 placeholder="Enter Your Store Index"
                                 cols={30}
                                 rows={10}
                             ></textarea>
                         </div>
-                        <div className="flex items-center gap-4">
+                        <div className="flex justify-end gap-4">
                             <PrimaryButton disabled={processing}>Update</PrimaryButton>
                         </div>
                     </form>
@@ -113,7 +113,11 @@ function VendorDetails(
                                 You are successfully connected to Stripe.
                             </div>
                         )}
-                        <PrimaryButton disabled={user.stripe_account_active}>Connect to Stripe</PrimaryButton>
+                        {!user.stripe_account_active && (
+                            <PrimaryButton disabled={user.stripe_account_active}>
+                                Connect to Stripe
+                            </PrimaryButton>
+                        )}
                     </form>
                 </>
             )}
