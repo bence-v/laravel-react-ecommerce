@@ -31,7 +31,7 @@ export default function Home({
             </section>
 
             <section className="mx-4 p-4">
-                <ProductCarousel products={products.data} />
+                <ProductCarousel products={products?.data} />
             </section>
 
 
@@ -46,7 +46,7 @@ export default function Home({
             </section>
 
             <section className="mx-4 p-4">
-                <ProductCarousel products={products.data} />
+                <ProductCarousel products={products?.data} />
             </section>
 
         </AuthenticatedLayout>

@@ -26,7 +26,10 @@ class ProductController extends Controller
             })
             ->paginate(12);
 
-        return Inertia::render('Home', ['products' => ProductListResource::collection($products)]);
+        return Inertia::render('Home', [
+            'products' => Inertia::defer(fn () => ProductListResource::collection($products)),
+            ]
+        );
     }
 
     public function show(Product $product)
